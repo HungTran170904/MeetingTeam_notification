@@ -7,6 +7,9 @@ spec:
       command:
         - cat
       tty: true
+      volumeMounts:
+        - name: maven-repo
+          mountPath: /root/.m2
     - name: docker
       image: 'docker:latest'
       command:
@@ -16,6 +19,9 @@ spec:
         - mountPath: /var/run/docker.sock
           name: docker-sock
   volumes:
+    - name: maven-repo
+      hostPath:
+        path: /var/maven
     - name: docker-sock
       hostPath:
         path: /var/run/docker.sock
