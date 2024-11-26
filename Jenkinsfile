@@ -36,6 +36,12 @@ pipeline{
                                         }
                               }
                     }
+                    stage('build jar file'){
+                              when{ branch 'main' }
+                              container('maven'){
+                                        sh "mvn install -DskipTests=true"
+                              }
+                    }
                     stage('build and push image'){
                               when{ branch 'main' }
                               steps{
