@@ -36,22 +36,20 @@ pipeline{
                                         }
                               }
                     }
-                    stage{
+                    stage('build and push image'){
                               when{ branch 'main' }
                               steps{
-                                        container('build and push image'){
-                                                  container('docker'){
-                                                            script{
-                                                                      app = docker.build(DOCKER_IMAGE_NAME, dockerfilePath)
-                                                                      docker.withRegistry(DOCKER_REGISTRY, dockerhubAccount ) {
-                                                                                app.push(version)
-                                                                      }
+                                        container('docker'){
+                                                  script{
+                                                            app = docker.build(DOCKER_IMAGE_NAME, dockerfilePath)
+                                                            docker.withRegistry(DOCKER_REGISTRY, dockerhubAccount ) {
+                                                                      app.push(version)
                                                             }
                                                   }
                                         }
                               }
                     }
-                    stage("update k8s repo"){
+                    stage('update k8s repo'){
                               when{ branch 'main' }
                               steps {
 				withCredentials([
