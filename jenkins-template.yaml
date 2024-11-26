@@ -5,7 +5,8 @@ spec:
     - name: maven
       image: maven:3.8.3-openjdk-17
       command:
-      - cat
+        - cat
+      tty: true
     - name: docker
       image: 'docker:latest'
       command:
