@@ -18,7 +18,7 @@ def version = "v1.${BUILD_NUMBER}"
 pipeline{
          agent {
                     kubernetes {
-                              inheritFrom 'springboot-template'
+                              yaml readFile('jenkins-pod-template.yaml')
                     }
           }
           
@@ -81,5 +81,6 @@ pipeline{
 				}				
                               }
                     }
+
           }
 }
