@@ -8,6 +8,8 @@ class NotificationServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
+		int a=1;
+		a++;
 	}
 
 }
